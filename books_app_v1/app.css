@@ -1,0 +1,152 @@
+body{
+    margin:0px;
+    padding:0px;
+}
+
+.nav{
+    display:inline;
+}
+.nav li{
+    display:inline;
+}
+
+#profile_pic{
+    border-radius:50%;
+    width:50px;
+    height:50px;
+    border:2px solid white;
+    padding:2px;
+}
+
+header h1{
+    font-family: "Helvetica Neue",Helvetica,Arial;
+    font-size: 1.4em;
+}
+
+header{
+    padding-left:5px;
+    padding-right:5px;
+    background:black;
+    color:white;
+    margin:0px;
+
+    display:flex;
+    align-items:center;
+}
+
+.filler{
+    flex:1;
+}
+
+.nav a, .nav a:visited{
+    color:white;
+    font-weight: bold;
+    text-decoration:none;
+    margin-right:5px;
+    border-radius:5px;
+}
+
+.nav a:hover{
+    background:lightgoldenrodyellow;
+    color:black;
+}
+
+.content{
+    padding:10px;
+    margin-bottom:50px;
+}
+
+footer{
+    background:black;
+    color:white;
+    text-align:center;
+    padding:10px;
+    position:fixed;
+    bottom:0px;
+    width:100%;
+    height:50px;
+    
+}
+
+.cards{
+    display:flex;
+
+}
+.card{
+    margin:10px;
+    border-radius:10px;
+    padding:0px;
+    width:150px;
+    box-shadow: -2px -2px 2px gray;
+    display:flex;
+    flex-direction:column;
+    align-items: center;
+
+}
+
+.card a, .card a:visited{
+    text-decoration:none;
+    background:black;
+    padding:5px;
+    border-radius:5px;
+    color:white;
+    
+}
+
+.card .title{
+    font-size:1.2em;
+    color:black;
+    font-weight: bold;
+    text-align: center;
+}
+
+.card .subtitle{
+    font-size:1em;
+    color:gray;
+    
+    text-align: center;
+}
+
+.card .label{
+    font-size:.8em;
+    color:gray;    
+    text-align: center;
+}
+
+.book_thumbnail{
+    width:150px;    
+    border-radius:10px;
+}
+
+.book_cover{
+    height:250px;
+    border:10px solid black;
+    padding:5px;
+    border-radius:10px;
+}
+
+.info{
+    display:flex;
+    align-items: flex-start;
+    
+   
+}
+
+.info .left{
+
+    flex:3;
+    align-self:center;
+    
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items:center;
+    align-self:flex-start;
+    padding-top:20px;
+}
+
+.info .right{
+    
+    flex:7;
+    padding-left:20px;
+}

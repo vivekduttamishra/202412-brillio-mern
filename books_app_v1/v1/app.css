@@ -1,0 +1,159 @@
+div{
+            
+}
+
+h2{
+    font-family:'Lucida Console', Monaco, monospace;
+    font-size:1.4em;
+}
+
+h3{
+    font-size:1em;
+    font-style:italic;
+}
+
+img{
+    height:80px;
+    
+}
+
+/* table{
+    border:1px solid gray;
+    width:90%;
+}
+
+thead{
+    background-color: black;
+    color:white;
+} */
+
+
+
+ul{
+    
+}
+li{
+   
+}
+
+#profile-pic{
+    border-radius:50%;
+    width:40px;
+    height:40px;   
+   
+}
+
+#footer{
+    text-align: center;
+    font-size:10px;
+    color:gray;
+    border-top:2px solid gray;
+    padding-top:10px;
+    margin-top:20px;
+}
+
+.book_thumbnail{
+    height:100px;
+    box-shadow: -2px -2px 3px gray;
+    border-radius:5px;
+}
+
+.nav{
+    display:inline;
+}
+
+.nav li{
+    list-style-type:none;
+    display:inline;
+    
+    border-right:1px solid gray;
+    padding:5px;
+}
+
+.nav li:last-child{
+    border:0px;
+}
+
+
+.nav a, .nav a:visited{
+    text-decoration: none;
+    color:black;
+}
+
+.nav a:hover{
+    background-color:lime;
+}
+
+header{
+    border-bottom: 2px solid gray;;
+}
+
+header h1{
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size:3em;
+    text-shadow: -2px -2px 2px gray;
+}
+
+.books_table{
+    border:1px solid gray;
+    border-collapse: collapse;
+}
+
+.books_table th{
+    background-color:black;
+    color:white;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.books_table td{
+    border-bottom:1px solid gray;
+    padding:5px;
+}
+
+.books_table a, .books_table:visited{
+    text-decoration: none;
+    color:black;
+    background:black;
+    padding:5px;
+    color:white;
+    border-radius:5px;
+    box-shadow: -2px -2px 2px gray;
+}
+
+.books_table a:hover{
+    color:yellow;
+}
+
+.book_cover{
+    height:250px;
+    padding:10px;
+    border:20px solid black;
+    border-radius:10px;
+    margin:5px;
+}
+
+.left{
+    display: inline-block;
+    float:left;
+    width:30%;
+    
+}
+
+.right{
+    display:inline;
+    float:left;
+    width:60%;
+    padding-left:10px;
+}
+
+.content{
+    
+    
+    overflow:auto;
+    
+}
+
+.book_info{
+    
+}
