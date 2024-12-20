@@ -23,3 +23,41 @@ console.log(output);
 
 
 console.log(typeof(b),b);
+
+
+let z= true;
+
+console.log(typeof(z),z);
+
+z=2>3;
+
+console.log(typeof(z),z);
+
+z= new Object();
+
+console.log(typeof(z),z);
+
+z={}; //same as new Object()
+
+console.log(typeof(z),z);
+
+var d=new Date();
+
+console.log(typeof(d),d);
+
+var list=[2,3,'hello', false, new Date()];
+
+console.log(typeof(list),list);
+
+let c=null;
+
+console.log(typeof(c),c);
+
+let e=undefined; //explicitly undefined
+
+console.log(typeof(e),e);
+
+let f; //implicitly undefined.
+
+console.log(typeof(f),f);
+
