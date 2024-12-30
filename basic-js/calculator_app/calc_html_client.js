@@ -20,4 +20,5 @@ calculator(10, mod, 5, htmlFormatter); //10 mod 5 = 0
 
 calculator(10, mod, 3, methodStyle);
 
-calculator(10,mod,3, raw);
+calculator(10,mod,3, newraw);
+
