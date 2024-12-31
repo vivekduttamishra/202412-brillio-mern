@@ -14,12 +14,15 @@ console.log('values',values);
 
 console.log('removedValues',removedValues);
 
+
+values=[2,3,4,9];
+
 let result = values.push(200); //adds 200 in existing array;
 console.log('result',result); //size of updated list. no new list created.
 
 console.log('values',values);
 
-let result2 = values.concat(300); //create a new list with current values and 300
+let result2=values.concat(300); //create a new list with current values and 300
 
 console.log('result2',result2); //[all values from values, 300]
 
