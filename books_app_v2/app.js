@@ -11,6 +11,19 @@ function getReviewList(reviews){
     return list;
 }
 
+function sortOnPrice(){
+    console.log("Sort on Price");
+}
+function sortOnRating(){
+    console.log("Sort on Rating");
+}
+let searchTextBox=document.getElementById("search");
+let criteria = document.getElementById("criteria");
+function search(){
+
+    console.log("Searching", criteria.value, searchTextBox.value);
+}
+
 function showBookCards(books){
 
     //console.log(`I will display given ${books.length} books`);

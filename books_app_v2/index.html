@@ -56,6 +56,17 @@
 
     <div class="content">
         <h1 id="pageTitle">Our Recommendation of <span id="bookCount"></span> Books</h1> 
+        
+        <select id="criteria">
+            <option>Author</option>
+            <option>Title</option>
+            <option>Rating Range</option>
+            <option>Price Range</option>
+        </select>
+        <input id="search"/><button onclick="search()">Search</button>
+        <button onclick="sortOnPrice()">Sort on Price</button>
+        <button onclick="sortOnRating()">Sort on Rating</button>
+        <button onclick="sortOnAuthor()">Sort on Author</button>
 
         <div class="cards" id="books">
             <!-- <div class="card" id="card-1">
