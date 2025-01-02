@@ -10,11 +10,12 @@
 
 </head>
 
-<body onload="app.init()" >
+<body >
     <header>
         <h1>Book's Web</h1>
 
-        
+
+
 
         <ul class="nav">
             <li>
@@ -62,13 +63,11 @@
             <option>Rating Range</option>
             <option>Price Range</option>
         </select>
-        <input id="search"/><button onclick="app.handleSearch()">Search</button>
-        <button onclick="app.handleGetAllBooks()">All Books</button>
-        <button onclick="app.handleSortOnPrice()">Sort on Price</button>
-        <button onclick="app.handleSortOnRating()">Sort on Rating</button>
-        <button onclick="app.handleSortOnAuthor()">Sort on Author</button>
-
-        <p id="messageArea"></p>
+        <input id="search"/><button onclick="search()">Search</button>
+        <button onclick="getAllBooks()">All Books</button>
+        <button onclick="sortOnPrice()">Sort on Price</button>
+        <button onclick="sortOnRating()">Sort on Rating</button>
+        <button onclick="sortOnAuthor()">Sort on Author</button>
 
         <div class="cards" id="books">
             <!-- <div class="card" id="card-1">
@@ -128,7 +127,7 @@
 
 
         <script src="books.js"></script>
-        <script src="web_app.js"></script>
+        <script src="app.js"></script>
     </div>
 
     <footer>

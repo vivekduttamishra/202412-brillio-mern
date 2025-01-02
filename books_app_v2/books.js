@@ -1,4 +1,4 @@
-const books=[
+var books=[
     {
         id:'the-accursed-god',
         title:'The Accursed God',
@@ -56,3 +56,139 @@ const books=[
         ]
     },
 ]
+
+
+function addBook(book){
+    //write validation logic to check book info is present
+    if(!book.title)
+        return "Invalid Title";
+    if(!book.author)
+        return "Missing Author";
+    if(! book.price || isNaN(book.price) || book.price < 0)
+        return "Invalid Price";
+    if(!book.rating || isNaN(book.rating) || book.rating<1 || book.rating>5)
+        return "Invalid Rating";
+    
+    books.push(book); //save to database;
+
+    return null; //no error.
+}
+
+function sortOnPrice(books) {
+
+    //let books=displayBooks;
+    //let sorted;
+    let size = books.length;
+
+    do {
+        var sorted = true; //optimisitic assumption that the  list is sorted
+        for (let i = 0; i < size - 1; i++) {
+            if (books[i].price > books[i+1].price) {
+                let temp = books[i];
+                books[i] = books[i + 1];
+                books[i + 1] = temp;
+                sorted = false; //oh! my assumption was wrong
+            }
+        }
+        size--;
+    } while (!sorted);
+    //console.log(books);
+    //showBookCards(books);
+
+    return books;
+}
+
+
+function sortOnRating(books) {
+    let size = books.length;
+    //let books=displayBooks;
+    do {
+        var sorted = true; //optimisitic assumption that the  list is sorted
+        for (let i = 0; i < size - 1; i++) {
+            if (books[i].rating < books[i+1].rating) {
+                let temp = books[i];
+                books[i] = books[i + 1];
+                books[i + 1] = temp;
+                sorted = false; //oh! my assumption was wrong
+            }
+        }
+        size--;
+    } while (!sorted);
+    //console.log(books);
+    //showBookCards(books);
+
+    return books;
+}
+
+function sortOnAuthor(books){
+    //let books=displayBooks;
+    let size = books.length;
+
+    do {
+        var sorted = true; //optimisitic assumption that the  list is sorted
+        for (let i = 0; i < size - 1; i++) {
+            if (books[i].author.toLowerCase() > books[i+1].author.toLowerCase()) {
+                let temp = books[i];
+                books[i] = books[i + 1];
+                books[i + 1] = temp;
+                sorted = false; //oh! my assumption was wrong
+            }
+        }
+        size--;
+    } while (!sorted);
+    //showBookCards(books);
+    return books;
+}
+
+
+function search(books,criteria, query) {
+    //let criteria=criteriaList.value;
+    //let query=searchTextBox.value;
+    query=query.toLowerCase();
+    let result=[];
+
+    for(let book of books){
+        if(criteria=='Title' && book.title.toLowerCase().includes(query))
+            result.push(book);
+        else if(criteria=='Author' && book.author.toLowerCase().includes(query))
+            result.push(book);
+        else if(criteria=='Price Range'){
+            let range= query.split('-');
+            let min = +range[0];
+            let max = +range[1];
+            if(book.price>=min && book.price<max){
+                result.push(book);
+            }
+        }
+        else if (criteria=='Rating Range'){
+            let range= query.split('-');
+            let min = +range[0];
+            let max = +range[1];
+            if(book.rating>=min && book.rating<max){
+                result.push(book);
+            }
+        }
+    }
+
+    //displayBooks=result;
+    //showBookCards(displayBooks);
+    
+    return result;
+
+}
+
+
+try{
+    
+    module.exports={
+        books:books,
+        addBook:addBook,
+        sortOnAuthor, //same as sortOnAuthor:sortOnAuthor
+        sortOnPrice,
+        sortOnRating,
+        search
+    }
+}catch(e){
+    //web application.
+    //no harm done.
+}
