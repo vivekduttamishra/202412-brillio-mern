@@ -4,7 +4,7 @@
 // let search=b.search;
 try{
 
-    var {books, sortOnPrice,search} = require('./books')
+    var {books, sortOnPrice,searchByAuthor,searchByTitle,searchByPriceRange} = require('./books')
 }catch(e){
     //its a web app.
     //no problem functions are included.
@@ -15,6 +15,10 @@ let app= (function(){
     let selectedBooks;;
     
     function showBooks(books,message=''){
+
+        if(!books || !books.length)
+            message+= '<span class="error">No books Found</span>';
+
         let messageArea = document.getElementById('messageArea');
         messageArea.innerHTML = message;
         
@@ -46,22 +50,22 @@ let app= (function(){
     
     function handleSortOnPrice(){
         sortOnPrice(selectedBooks);
-        showBooks(selectedBooks);
+        showBooks(selectedBooks,'Sort on Price');
     }
 
     function handleSortOnRating(){
         sortOnRating(selectedBooks);
-        showBooks(selectedBooks);
+        showBooks(selectedBooks,'Sorted on Rating');
     }
 
     function handleSortOnAuthor(){
         sortOnAuthor(selectedBooks);
-        showBooks(selectedBooks);
+        showBooks(selectedBooks, 'Sorted on Author');
     }
 
     function handleGetAllBooks(){
         selectedBooks = books;
-        showBooks(selectedBooks);
+        showBooks(selectedBooks,'All Books');
     }
 
     function init(){
@@ -70,13 +74,48 @@ let app= (function(){
     }
     let criteriaList= document.getElementById('criteria');
     let searchText= document.getElementById('search');
+
+    function getRange(query){
+        let values=query.split('-');
+        
+        return [+values[0],+values[1]];
+    }
+
+    const searchCriterias={
+        "Author": searchByAuthor,
+        "Title": searchByTitle,
+        //"Price Range": (items,query)=> searchByPriceRange(items,...getRange(query)),
+        "Rating Range": (item,query)=>{
+            var range= getRange(query);
+            return search(selectedBooks,(book)=> book.rating>=range[0] && book.rating<=range[1])
+        }
+    }
+
     function handleSearch(){
         let criteria= criteriaList.value;
         let query= searchText.value;
-        selectedBooks= search(selectedBooks,criteria,query);
-        showBooks(selectedBooks);
+        let result
+        console.log('criteria',criteria);
+        let searchFunction = searchCriterias[criteria];
+
+        if(searchFunction) {
+            result=searchFunction(selectedBooks,query);
+        }
+        else{
+            showBooks(selectedBooks,`<span class='error'>Invalid Search criteria</span>`);
+            return;
+        }
+
+        
+        if(result.length){
+            selectedBooks=result;
+            showBooks(selectedBooks,`Books with ${criteria}=${query}`);
+        }else
+            showBooks(selectedBooks,`<span class='error'>No Books matching ${criteria}=${query}</span>`);
     }
-    
+    function handleSearchCriteriaChange(){
+        console.log('New search criteria', criteriaList.value);
+    }
     //applicaiton object
     return {
         init,
@@ -85,6 +124,7 @@ let app= (function(){
         handleSortOnAuthor,
         handleGetAllBooks,
         handleSearch,
+        handleSearchCriteriaChange,
         showBooks
     }
 
