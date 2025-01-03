@@ -1,0 +1,6 @@
+node_modules/ 
+.env* 
+private/ 
+*temp 
+node_modules/ 
+.env* 
