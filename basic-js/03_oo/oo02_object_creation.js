@@ -23,12 +23,13 @@ showPerson(p2);
 //Approach #3 creating an initialized object
 let p3= {
     name:'Rahul',
-    age:35
+    age:35,
+    'email':'prabhat@gmail.com'
 };
 
 showPerson(p3);
 
 p3['email'] = 'rahul@gmail.com'; //same as p3.email = 'rahul@gmail.com'
-console.log('p3.email',p3.email);
+console.log('p3.email',p3['official-email']);
 console.log('p1["name"]',p1["name"]);
 
