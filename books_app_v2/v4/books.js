@@ -36,7 +36,7 @@ var books = [
     {
         id: 'the-count-of-monte-cristo',
         title: 'The Count of Mone Cristo',
-        author: 'Alexandre Dumas',
+        author: 'alexandre dumas',
         cover: 'https://m.media-amazon.com/images/I/415bCctFbxL._SY445_SX342_.jpg',
         price: 499,
         rating: 4.8,

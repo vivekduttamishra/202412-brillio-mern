@@ -9,9 +9,65 @@ function search(list, match) {
     return result;
 }
 
+//not a good idea
+function sort_on_key(list,key) {
+
+    
+    let size = list.length;
+
+    do {
+        var sorted = true; //optimisitic assumption that the  list is sorted
+        for (let i = 0; i < size - 1; i++) {
+            if (list[i][key] > list[i + 1][key]) {
+                let temp = list[i];
+                list[i] = list[i + 1];
+                list[i + 1] = temp;
+                sorted = false; //oh! my assumption was wrong
+            }
+        }
+        size--;
+    } while (!sorted);
+  
+
+    return list;
+}
+
+/**
+ * 
+ * @param {*} list  the list item to be sorted 
+ * @param {*} isOrdered a function returning true if current pair of item is already in sorted order
+ * @returns sorted list (same list) 
+ */
+function sort(list, isOrdered=(a,b)=> a<=b ) {
+
+    
+    let size = list.length;
+
+    do {
+        var sorted = true; //optimisitic assumption that the  list is sorted
+        for (let i = 0; i < size - 1; i++) {
+            if (!isOrdered(list[i],list[i+1])) {
+                let temp = list[i];
+                list[i] = list[i + 1];
+                list[i + 1] = temp;
+                sorted = false; //oh! my assumption was wrong
+            }
+        }
+        size--;
+    } while (!sorted);
+  
+
+    return list;
+}
+
+
+
+
+
 try{
     module.exports={
-        search
+        search,
+        sort
     }
 }catch(e){
     

@@ -3,21 +3,34 @@
 // let sortOnPrice=b.sortOnPrice;
 // let search=b.search;
 
-let {books, sortOnPrice,searchByPriceRange} = require('./books')
+let { sort } = require('./utils')
+let { books } = require('./books')
 
 
-function displayBooks(books,message=''){
+function displayBooks(books, message = '') {
     console.log(message);
-    for(let book of books){
+    for (let book of books) {
         console.log(`${book.price}\t${book.rating}\t${book.author}\t${book.title}`);
     }
 }
 
-displayBooks(books,"Original List");
+displayBooks(books, "Original List");
 
-sortOnPrice(books);
+sort(books, (b1, b2) => b1.price <= b2.price);
 
-displayBooks(books,"Sorted by Price");
+displayBooks(books, "Sorted On Price");
 
-let cheapBooks= searchByPriceRange(books,0,200);
-displayBooks(cheapBooks,"Cheap Book");
+sort(books, (b1, b2) => b1.rating >= b2.rating)
+
+displayBooks(books, "Sorted On Rating");
+
+//sort books on author and if author is same on title
+sort(books, (b1, b2) => {
+
+    if (b1.author.toLowerCase() !== b2.author.toLowerCase())
+        return b1.author.toLowerCase() <= b2.author.toLowerCase();
+    else
+        return b1.title.toLowerCase() <= b2.title.toLowerCase()
+});
+
+displayBooks(books, "Sorted On Author and Title");
