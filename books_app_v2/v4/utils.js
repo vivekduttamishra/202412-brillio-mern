@@ -60,6 +60,14 @@ function sort(list, isOrdered=(a,b)=> a<=b ) {
     return list;
 }
 
+Array.prototype.search=function(match){ return search(this,match);}
+
+//Array comes with built-in sort function.
+//now that sort function is replaced with my version of sort.
+Array.prototype.sort=function(isOrdered=(a,b)=>a<b){ 
+    console.debug('Using Bubble Sort');
+    return sort(this,isOrdered);
+}
 
 
 
