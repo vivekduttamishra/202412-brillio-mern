@@ -146,20 +146,44 @@ function sortOnAuthor(books) {
     return books;
 }
 
+// function byAuthor(author){
+//     author=author.toLowerCase();
+//     function matcher(book){
+//         return book.author.toLowerCase()===author;
+//     }
+//     return matcher;
+// }
 
-var searchByAuthor=function(books,author){
-    author=author.toLowerCase();
-    return search(books, book=> book.author.toLowerCase().includes(author));
-}
-
-var searchByTitle=function(books,title){
-    title=title.toLowerCase();
-    return search(books, book=> book.title.toLowerCase().includes(title));
-}
+const byAuthor = author=> book=> book.author.toLowerCase().includes(author.toLowerCase());
+const byTitle = title=> book=> book.title.toLowerCase().includes(title.toLowerCase());
 
 var searchByPriceRange=function(books,min,max){
     return search(books, book=> book.price >= min && book.price <= max);
 }
+
+function matchAuthor(book,author){
+    return book.author.toLowerCase().includes(author.toLowerCase());
+}
+
+function matchTitle(book,param){
+    if(param.exactMatch)
+        return book.title.toLowerCase()===param.title.toLowerCase();
+    else
+        return book.title.toLowerCase().includes(param.title.toLowerCase());
+}
+
+
+
+// var searchByAuthor=function(books,author){
+    
+//     return search(books, byAuthor(author))
+// }
+
+// var searchByTitle=function(books,title){
+//     title=title.toLowerCase();
+//     return search(books, book=> book.title.toLowerCase().includes(title));
+// }
+
 
 
 try {
@@ -170,8 +194,12 @@ try {
         sortOnAuthor, //same as sortOnAuthor:sortOnAuthor
         sortOnPrice,
         sortOnRating,
-        searchByAuthor,
-        searchByTitle,
+        byTitle,
+        byAuthor,
+        matchAuthor,
+        matchTitle,
+        //searchByAuthor,
+        //searchByTitle,
         searchByPriceRange,
     }
 } catch (e) {
