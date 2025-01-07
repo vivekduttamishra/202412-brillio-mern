@@ -1,0 +1,1 @@
+document.write(`Searching for ${window.location.href}`);

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Document</title>
+
+</head>
+<body>
+    <h1>Prime Finder</h1>
+    <div class="input">
+        <span>Min</span>
+        <input type="number" id="min" placeholder="Enter Minimum value"/>
+        
+        <span>Max</span>
+        <input type="number" id="max" placeholder="Enter Maximum value"/>
+        <button onclick="app.handleFindPrimes()">Find Primes</button>
+    </div>
+    <h2>Results</h2>
+    <table class="result_table">
+        <thead>
+            <tr>
+                <th>Job Id</th>
+                <th>Min</th>
+                <th>Max</th>
+                <th>Primes</th>
+            </tr>
+        </thead>
+        <tbody id="results">
+            
+        </tbody>
+    </table>
+
+    <script src="primes.js"></script>
+    <script src="webapp.js"></script>
+</body>
+</html>

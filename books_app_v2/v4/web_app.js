@@ -39,7 +39,7 @@ let app= (function(){
                     <div class="subtitle" >${book.author}</div>
                     <div class="label">${book.price}</div>
                     <div class="label">${book.rating}</div>
-                    <a class="action-link" href="book1.html">Details</a>
+                    <a class="action-link" href="details.html?id=${book.id}">Details</a>
                     
             </div>        
             `
