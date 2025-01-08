@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="app.css">
+</head>
+
+<body>
+    <header>
+        <h1>Book's Web</h1>
+
+
+
+        <ul class="nav">
+            <li>
+                <a href="index.html">Books</a>
+            </li>
+            <li>
+                <a href="add-book.html">Add Book</a>
+
+            </li>
+            <li>
+                <a href="authors.html">Authors</a>
+
+            </li>
+            <li>
+                <a href="authors.html">Add Authors</a>
+
+            </li>
+        </ul>
+
+        <div class="filler"></div>
+
+        <ul class="nav">
+            <li>
+                <a href="login.html">Login</a>
+
+            </li>
+            <li>
+                <a href="register.html">Register</a>
+
+            </li>
+        </ul>
+
+        <img id="profile_pic" src="https://randomuser.me/api/portraits/women/68.jpg">
+
+    </header>
+
+
+
+    <div class="content">
+        <h1 id="pageTitle">Add New Book</h1>
+        <p id='error' class="error"></p>
+        <div class="form">
+            <div>
+                <span class="label">Book Id</span>
+                <input type="text" name="id" id="id">
+            </div>
+            <div>
+                <span class="label">Title</span>
+                <input type="text" name="title" id="title">
+            </div>
+            <div>
+                <span class="label">Author</span>
+                <input type="text" name="author" id="author">
+            </div>
+            <div>
+                <span class="label">Price</span>
+                <input type="text" name="price" id="price">
+            </div>
+            <div>
+                <span class="label">Rating</span>
+                <input type="text" name="rating" id="rating">
+            </div>
+            <div>
+                <span class="label">Cover</span>
+                <input type="text" name="cover" id="cover">
+            </div>
+            <div>
+                <span class="label">Description</span>
+                <input type="text" name="description" id="description">
+            </div>
+
+            <button onclick="app.handleAddBook()">Save</button>
+            
+        </div>
+
+
+    </div>
+
+    <footer>
+        footer information
+    </footer>
+
+    <script src="utils.js"></script>
+    <script src="books.js"></script>
+    <script src="add-book.js"></script>
+</body>
+
+</html>

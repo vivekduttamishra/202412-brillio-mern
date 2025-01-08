@@ -1,40 +1,42 @@
 
-function isPrime(n){
-    if(n<2) return false;
+function isPrime(n) {
+    if (n < 2) return false;
 
-    for(let i=2;i<n;i++)
-        if(n%i===0)
+    for (let i = 2; i < n; i++)
+        if (n % i === 0)
             return false;
 
     return true;
 }
 
-function findPrimesSync(min,max){
-    let primes=[];
-    for(let i=min;i<=max;i++){
-        if(isPrime(i))
+function findPrimesSync(min, max) {
+    let primes = [];
+    for (let i = min; i <= max; i++) {
+        if (isPrime(i))
             primes.push(i);
     }
     return primes;
 }
 
-function findPrimes(min,max,cb){
-    let primes=[];
-    for(let i=min;i<=max;i++){
-        if(isPrime(i))
-            primes.push(i);
-    }
-    //return primes;
-    cb(primes);
+function findPrimes(min, max, cb) {
+    setTimeout(function () {
+        let primes = [];
+        for (let i = min; i <= max; i++) {
+            if (isPrime(i))
+                primes.push(i);
+        }
+        //return primes;
+        cb(primes);
+    }, 5000)
 }
 
-try{
-    module.exports={
+try {
+    module.exports = {
         isPrime,
         findPrimesSync,
         findPrimes,
     }
-}catch(e){
+} catch (e) {
     //window applicaiton.
     //no harm done.
 }
