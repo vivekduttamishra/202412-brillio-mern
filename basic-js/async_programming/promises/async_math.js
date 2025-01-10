@@ -1,4 +1,22 @@
 
+function factorial(n){
+    if(n>1)
+        return n*factorial(n-1);
+    else
+        return 1;
+}
+
+
+function PermutationSync(n,r){
+    if(n<0 || r<0 || n<r)
+        throw new Error('Invalid Input');
+
+    let fn=factorial(n);
+    let fn_r=factorial(n-r);
+
+    return fn/fn_r;
+}
+
 
 function factorialAsync(n) {
     return new Promise((resolve, reject) => {
@@ -18,7 +36,7 @@ function factorialAsync(n) {
                 return;
             }
 
-        }, 1000); //DONT USE 1 sec delay in production. It is to just learn long running job.
+        }, 1000); 
 
     });
 }
@@ -65,8 +83,10 @@ function permutationAsyncBadV2(n, r) {
 function permutationAsyncV3(n, r) {
 
     return new Promise((resolve, reject) => {
-    
-        
+        if(n<0 || r<0 || r>n){
+            return reject(new Error('Invalid value'));
+        }
+
         factorialAsync(n).then(fn => {
             //we reach here after "n" seconds
             factorialAsync(n - r).then(fn_r => {
@@ -80,16 +100,29 @@ function permutationAsyncV3(n, r) {
     });
 }
 
+async function permutationAsyncV4(n,r){
+
+    if(n<0 || r<0 || r>n){
+        throw new Error('Invalid value');//promise.reject
+    }
+
+    let fn = await factorialAsync(n);
+    let fn_r = await factorialAsync(n - r);
+    
+    return fn/fn_r; //returns Promise 
+
+}
 
 
-function permutationAsyncV3(n, r) {
+
+function permutationAsyncV5(n, r) {
 
     return new Promise((resolve, reject) => {
     
         if(n<0 || r<0 || n<r){
             return reject(new Error('Invalid value'));
         }
-        
+
         let fn,fn_r
         factorialAsync(n).then(result=> {
             //we reach here after "n" seconds
@@ -116,11 +149,27 @@ function permutationAsyncV3(n, r) {
 }
 
 
+async function permutationAsync(n,r){
+    if(n<0 || r<0 || n<r)
+        throw new Error('Invalid value');//promise.reject
+
+    //create promise. don't await them
+    let pFn = factorialAsync(n);
+    let pFn_r = factorialAsync(n - r);
+
+    //now await for all of them together
+    //and take their result.
+    let [fn,fn_r] =  await Promise.all([pFn,pFn_r]);
+    
+    return fn/fn_r; //returns Promise
+}
+
 
 try {
     module.exports = {
         factorialAsync,
-        permutationAsync:permutationAsyncV3
+        factorial,
+        permutationAsync:permutationAsync
     }
 } catch (e) {
     //no problem. web app
