@@ -16,3 +16,7 @@
 .done{
     background-color: limegreen;
 }
+
+.error_row{
+    background-color:red;
+}

@@ -20,12 +20,12 @@ const app=(function(){
         result.innerHTML+=row;
     }
 
-    function updateRow(id,primes){
+    function updateRow(id,primes,css){
         let row=document.getElementById(id);
         row.querySelector('td:nth-child(4)').textContent=primes;
         //row.children[4].innerHTML=primes;
         row.classList.remove('running');
-        row.classList.add('done');
+        row.classList.add(css);
     }
 
     function handleFindPrimes(){
@@ -35,9 +35,21 @@ const app=(function(){
         let id = ++jobId;
         createRow(id,min,max);   
     
-        findPrimes(min,max,primes=>{
-            updateRow(id,primes.length);
-        });
+        findPrimes(min,max,
+        //result    
+        (error,primes)=>{
+
+            if(error){
+                updateRow(id,error.message,'error_row');
+            } else{
+                updateRow(id,primes.length, 'done');
+            }
+        },
+        //progress
+        (_,pc)=>{
+            updateRow(id,`${pc}%`,'running');
+        }
+        );
     
     }
 
