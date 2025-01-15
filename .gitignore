@@ -4,3 +4,4 @@ private/
 *temp 
 node_modules/ 
 .env* 
+big*

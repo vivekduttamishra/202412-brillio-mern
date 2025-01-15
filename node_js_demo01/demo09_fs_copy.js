@@ -16,11 +16,11 @@ const fileCopy = (src, target) => {
                     console.log(`Error writing to ${target}:${error}`)
                 } else {
                     console.log(`${src} copied to ${target}`);
+                    let end = new Date();
+                    console.log(`Total time taken to copy ${src} to ${target} is ${end - start} ms`);
+                    console.log('--------------------------------\n\n')
                 }
 
-                let end = new Date();
-                console.log(`Total time taken to copy ${src} to ${target} is ${end - start} ms`);
-                console.log('--------------------------------\n\n')
             });
         }
 
