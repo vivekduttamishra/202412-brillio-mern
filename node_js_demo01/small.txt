@@ -1,0 +1,6 @@
+This is a s small text file 
+to act as a smaple for
+understanding 'fs' module
+This file is so smal that it can be read even syncrhonously
+But don't use syncrhonously always. It may not work on my bigger brother.
+
