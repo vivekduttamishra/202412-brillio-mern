@@ -1,0 +1,13 @@
+{
+  "name": "book_server_v1",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "hello":"echo hello world",
+    "push" : "git add . && git commit -m pushed && git push origin HEAD"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
