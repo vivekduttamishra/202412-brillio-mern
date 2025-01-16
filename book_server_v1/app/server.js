@@ -14,7 +14,7 @@ const server =http.createServer(function(request,response){
     if(request.url==='/')
         response.end(`<h1>Welcome to Book List</h1>`);
     else if(request.url==='/details')
-        response.end(`<h1>Welcome Book Details Page</h1>`)
+        response.end(`<h1>Welcome Book Details Page V2</h1>`)
     else{
         response.writeHead(404); //NOt found
         response.end(`<h1>Page not found: ${request.url}</h1>`);
