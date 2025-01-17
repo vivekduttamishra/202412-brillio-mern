@@ -1,0 +1,17 @@
+{
+  "name": "server_app",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start":"node app/main",
+    "dev": "nodemon app/main",    
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "nodemon": "^3.1.9"
+  }
+}
