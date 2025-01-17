@@ -2,7 +2,7 @@ How to create a new nodejs server app
 
 1. Initalize app:  npm init -y
 
-2. Create the startup script: app/main.js 
+2. Create the startup script: src/main.js 
 
 3. Install nodemon:  npm i -d nodemon 
 
