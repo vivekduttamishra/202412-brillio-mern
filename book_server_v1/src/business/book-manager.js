@@ -29,8 +29,8 @@ class BookManager{
 
     }
 
-    getById(id){
-
+    async getById(id){
+        return this.books.find(b=>b.id.toLowerCase()===id);
     }
 
     removeBook(id){

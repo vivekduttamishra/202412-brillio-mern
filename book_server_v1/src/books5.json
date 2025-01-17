@@ -5,6 +5,7 @@
     },
     "isbn": "9781393495574",
     "title": "The Accursed God",
+    "id":"the-accursed-god",
     "author": "Vivek Dutta Mishra",
     "pages": "380",
     "rating": "4.9",
@@ -27,6 +28,7 @@
       "$oid": "5f4fb4e66980a8fb2b76e84c"
     },
     "isbn": "1408855658",
+    "id":"harry-potter-01",
     "title": "Harry Potter and the Philosopher's Stone ",
     "author": "JK Rowling",
     "pages": "384",
@@ -50,6 +52,7 @@
       "$oid": "5f4fbe4c6980a8fb2b76e854"
     },
     "isbn": "0007527519",
+    "id":"five-little-pigs",
     "title": "Five Little Pigs",
     "author": "Agatha Christie",
     "pages": "288",
@@ -74,6 +77,7 @@
       "$oid": "5f4fb89d6980a8fb2b76e850"
     },
     "isbn": "9781408855706",
+    "id":"harry-potter-06",
     "title": "Harry Potter and the Half Blood Prince",
     "author": "JK Rowling",
     "pages": "560",
@@ -95,6 +99,7 @@
       "$oid": "5f4fb7b36980a8fb2b76e84f"
     },
     "isbn": "9781408855690",
+    "id":"harry-potter-05",
     "title": "Harry Potter and the Order of the Phoenix",
     "author": "JK Rowling",
     "pages": "816",
