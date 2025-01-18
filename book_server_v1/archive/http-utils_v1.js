@@ -1,5 +1,18 @@
 const http = require('http');
 
+const resquestHandlers=[];
+
+const addRequestHandler=function(requestHandler){
+    requestHandlers.push(requestHandler);
+}
+
+const motherRequestHandler =async(request,response)=>{
+
+    for(let requestHandler of requestHandlers){
+
+    }
+}
+
 const startServer=function(requestHandler){
     let args=process.argv;
     let port=undefined;

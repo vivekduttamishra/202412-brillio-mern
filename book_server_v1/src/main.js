@@ -1,14 +1,14 @@
-//Step 1. get http module
-const bookManager= require('./business/book-manager');
-const {booksRequestHandler}= require('./routes/book-route');
-const {startServer}=require('./http-utils');
+const bookManager = require('./business/book-manager')
+const httpx=require('./httpx');
 
-const startApp=async ()=>{
-    console.log('loading books...')
-    //books=await getAllBooks(`src/books5.json`);
+//include the routes
+require('./routes/author-route')
+require('./routes/book-route')
+
+httpx.runApplication(async ()=>{
     await bookManager.loading();
-    console.log('App started');
-    startServer(booksRequestHandler); 
-    
-}
-startApp();
+});
+
+
+
+

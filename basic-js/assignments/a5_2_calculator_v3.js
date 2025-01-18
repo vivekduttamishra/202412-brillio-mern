@@ -18,6 +18,16 @@ const operators = {
 }
 
 
+const routes = {
+    '/books': {get:getAllBools, post: addBook},
+    'GET /books/*': getBooksById,
+    'GET /authors': getAllAuthors,
+    'POST /books': addBook,
+    'Get /authors/*': getAuthorById,
+
+}
+
+
 function calculator(value1, operator, value2, outputChoice) {
     if (operators[operator]) {
         var result = operators[operator](value1, value2);
