@@ -26,7 +26,7 @@ class BookManager{
     } 
 
     addBook(book){
-
+        this.books.push(book); 
     }
 
     async getById(id){

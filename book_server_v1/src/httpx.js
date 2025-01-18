@@ -1,5 +1,9 @@
 const http = require('http');
 
+const fs= require('fs');
+
+const path= require('path');
+
 const requestHandlers=[];
 
 const addRequestHandler=function(requestHandler){
@@ -17,6 +21,55 @@ const mapRequest= (action,matcher=()=>true)=>{
     })
 
 }
+
+const basePath='../public'; 
+
+const staticFileServer= ()=> addRequestHandler(async(request,response)=>{
+    
+    //let requestPath= request.url.split('?')[0];
+    let requestPath= request.path;
+    //path of reqsource
+
+    //let path =`${basePath}${requestPath}`
+    let filePath  = path.join('public',requestPath);
+    console.log('filePath',filePath);
+
+    let exists= await fs.existsSync(filePath);
+    if(exists){
+
+        fs
+            .createReadStream(filePath)
+            .pipe(response);
+       
+        return true;
+    }
+    //else     
+
+    return false; //not a static file.
+})
+
+
+const requestDataHandler=()=>addRequestHandler((request,response)=>{
+
+    return new Promise((resolve)=>{
+        let body='';
+        request
+            .on('data', buffer=> body+=buffer.toString())
+            .on('end', ()=> {
+                if(body)
+                    request.body=JSON.parse(body)
+                //console.log('request.body',request.body);
+                
+                
+                resolve();
+            });
+
+    });
+
+});
+
+
+
 
 const match= (method, url)=>{
     return request=>{
@@ -43,7 +96,27 @@ const mapDelete=( url, handler) => mapRequest( handler, match("delete",url));
 
 
 const motherRequestHandler =async(request,response)=>{
-    let i=0;
+    
+    let urlParts= request.url.split('?');
+    let path = urlParts[0];
+    let queryString=urlParts[1];
+    let query={};
+    if(queryString){
+        queryString
+            .split('&')
+            .forEach( p=>{
+                let [key,value]=p.split('=');
+                query[key]=value;
+            })
+    }  
+    let params= path.split('/');
+    
+    request.path=path;
+    request.params=params.slice(1);
+    request.query=query;
+    
+
+
     for(let requestHandler of requestHandlers){
         //console.log(`passed to handler ${i}`)
         let success= await requestHandler(request,response);
@@ -53,7 +126,7 @@ const motherRequestHandler =async(request,response)=>{
         }else{
             //console.log(`request forwarded to next handler `);
         }
-        i++;
+        
     }
     response.writeHead(404);
     response.end(JSON.stringify({error:404, url:request.url}))
@@ -97,5 +170,9 @@ module.exports={
     mapPut,
     mapPatch,
     mapDelete,
+    staticFileServer,
+    requestDataHandler,
+   
+    
 
 }

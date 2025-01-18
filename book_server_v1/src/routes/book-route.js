@@ -10,14 +10,16 @@ httpx.mapGet("/books", async (request, response) => {
 })
 
 httpx.mapPost("/books", async (request, response) => {
-    response.end({ response: 'added' });
+    await bookManager.addBook(request.body);
+    response.end(JSON.stringify({ response: 'added', book:request.body }));
 })
 
 
-
+ 
 httpx.mapGet("/books/*",async (request, response) => {
 
-    let id = request.url.split('?')[0].split('/').pop().toLowerCase();
+    //let id = request.url.split('?')[0].split('/').pop().toLowerCase();
+    let id= request.params[1];
 
     let book = await bookManager.getById(id);
     if (book) {
