@@ -4,14 +4,56 @@ const requestHandlers=[];
 
 const addRequestHandler=function(requestHandler){
     requestHandlers.push(requestHandler);
+} 
+
+const mapRequest= (action,matcher=()=>true)=>{
+    console.log('mapRequest', action,matcher);
+    addRequestHandler(async(request,response)=>{
+        if(matcher(request)){
+            await action(request,response);
+            return true; //handled.
+        }
+        return false; //not handled
+    })
+
 }
 
-const motherRequestHandler =async(request,response)=>{
+const match= (method, url)=>{
+    return request=>{
+        //console.log('matching', method,url);
+        let methodMatch = method==='*' || method.toLowerCase()=== request.method.toLowerCase();
+        url=url.toLowerCase();
+        let requestedUrl=request.url.toLowerCase().split('?')[0];
 
+        let urlMatch = url.endsWith('*') ? requestedUrl.startsWith(url.substring(0,url.length-1)): url===requestedUrl; 
+
+        return methodMatch && urlMatch;
+    }
+}
+
+const mapGet=( url, handler) => mapRequest( handler, match("get",url));
+const mapPost=( url, handler) => mapRequest( handler, match("post",url));
+const mapPut=( url, handler) => mapRequest( handler, match("put",url));
+const mapPatch=( url, handler) => mapRequest( handler, match("patch",url));
+const mapDelete=( url, handler) => mapRequest( handler, match("delete",url));
+
+
+
+
+
+
+const motherRequestHandler =async(request,response)=>{
+    let i=0;
     for(let requestHandler of requestHandlers){
+        //console.log(`passed to handler ${i}`)
         let success= await requestHandler(request,response);
-        if(success)
+        if(success){
+          //  console.log(`request handled`)
             return;
+        }else{
+            //console.log(`request forwarded to next handler `);
+        }
+        i++;
     }
     response.writeHead(404);
     response.end(JSON.stringify({error:404, url:request.url}))
@@ -47,5 +89,13 @@ const runApplication = async (intializer=async()=>{}, requestHandler=motherReque
 module.exports={
     startServer,
     runApplication,
-    addRequestHandler
+    addRequestHandler,
+    mapRequest,
+    match,
+    mapGet,
+    mapPost,
+    mapPut,
+    mapPatch,
+    mapDelete,
+
 }
