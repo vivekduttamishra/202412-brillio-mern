@@ -4,14 +4,24 @@ let app=express();
 
 let bookManager = require('./business/book-manager');
 
-function logRequestInfo(request){
-    console.log('request.url',request.url);
+function logRequestInfo(request,response,next){
+    console.log(`${request.method} ${request.path}`);
     console.log('request.path',request.path);
     console.log('request.params',request.params);
     console.log('request.query',request.query);
     console.log('request.body',request.body);
+    console.log();
+    next();
     
 }
+
+// app.use((request,response,next)=>{
+//     logRequestInfo(request);
+//     next(); //let next middlware work.
+// })
+
+//app.use(logRequestInfo);
+
 
 app.get('/', (request,response)=>{
     
@@ -25,7 +35,7 @@ app.get('/api/books',async(request,response)=>{
     response.send(books);
 })
 
-app.get('/api/books/:bookId', async(request,response)=>{
+app.get('/api/books/:bookId', logRequestInfo, async(request,response)=>{
     //logRequestInfo(request);
     let book = await bookManager.getById(request.params.bookId);
     if(book)
@@ -37,11 +47,13 @@ app.get('/api/books/:bookId', async(request,response)=>{
     }
 });
 
-app.post('/api/books', async(request,response)=>{
-    logRequestInfo(request);
+app.post('/api/books', async(request,response,next)=>{
+    //logRequestInfo(request);
     response.status(201).send({status:'created'})
-    
-})
+    next();
+}, logRequestInfo);
+
+
 app.put('/api/books/:id', async(request,response)=>{
     response.status(201).send({status:'updated',path:request.path, id:request.params.id})    
 })
