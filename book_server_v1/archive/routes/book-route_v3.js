@@ -42,14 +42,11 @@ mapRequest(async (request, response) => {
 },match("get","/books/*"))
 
 
-const deleteBookById = async (request, response) => {
+const deleteBookById =mapRequest( async (request, response) => {
 
-    if (request.url.toLowerCase().startWith('/books') && request.method === 'DELETE') {
         let id = request.url.split('?')[0].split('/').pop().toLowerCase();
 
         let book = await bookManager.removeBook(id);
         response.writeHead(204);
         response.end();
-        return true;
-    }
-}
+}, match("delete","/books/*"));

@@ -1,0 +1,127 @@
+{
+    "clientName": "Thunder Client",
+    "collectionName": "2024_brillio_mern",
+    "collectionId": "91a941a0-12a4-4b31-9385-a156397ff3a4",
+    "dateExported": "2025-01-20T06:33:51.814Z",
+    "version": "1.2",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "955a8d62-139c-4887-9745-6e564e083792",
+            "colId": "91a941a0-12a4-4b31-9385-a156397ff3a4",
+            "containerId": "",
+            "name": "GetAllBooks",
+            "url": "http://localhost:8000/books",
+            "method": "GET",
+            "sortNum": 5000,
+            "created": "2025-01-20T06:25:31.591Z",
+            "modified": "2025-01-20T06:25:31.592Z",
+            "headers": []
+        },
+        {
+            "_id": "01a066c7-1946-4d1c-b62e-1f2bae4f30ac",
+            "colId": "91a941a0-12a4-4b31-9385-a156397ff3a4",
+            "containerId": "",
+            "name": "Get Existing Book",
+            "url": "http://localhost:8000/books/invalid-id",
+            "method": "GET",
+            "sortNum": 7500,
+            "created": "2025-01-20T06:25:53.161Z",
+            "modified": "2025-01-20T06:26:29.214Z",
+            "headers": []
+        },
+        {
+            "_id": "c33b243b-8f33-438a-833d-5ce1dd25b5e9",
+            "colId": "91a941a0-12a4-4b31-9385-a156397ff3a4",
+            "containerId": "",
+            "name": "Get Invalid Book",
+            "url": "http://localhost:8000/books/the-accursed-god",
+            "method": "GET",
+            "sortNum": 8750,
+            "created": "2025-01-20T06:26:07.863Z",
+            "modified": "2025-01-20T06:26:07.863Z",
+            "headers": []
+        },
+        {
+            "_id": "a43b015d-552d-4905-9fcd-57931835fdba",
+            "colId": "91a941a0-12a4-4b31-9385-a156397ff3a4",
+            "containerId": "",
+            "name": "Add Book Kurukshetra",
+            "url": "http://localhost:8000/books",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2025-01-20T06:24:11.024Z",
+            "modified": "2025-01-20T06:24:11.024Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\r\n    \"id\":\"kurukshetra\",\r\n    \"title\":\"Kurukshtrea\",\r\n    \"author\":\"Ramdhari Singh Dinkar\",\r\n    \"description\":\"poetic tale of post Kurukshtrea war\",\r\n    \"rating\":4.4,\r\n    \"price\":99,\r\n    \"cover\":\"kurkshetra.png\"\r\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "0eddfc9f-ade2-4a92-b20c-87beab200e6c",
+            "colId": "91a941a0-12a4-4b31-9385-a156397ff3a4",
+            "containerId": "",
+            "name": "Get New Book",
+            "url": "http://localhost:8000/books/kurukshetra",
+            "method": "GET",
+            "sortNum": 11250,
+            "created": "2025-01-20T06:30:00.321Z",
+            "modified": "2025-01-20T06:30:00.321Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n    \"id\":\"kurukshetra\",\n    \"title\":\"Kurukshtrea\",\n    \"author\":\"Ramdhari Singh Dinkar\",\n    \"description\":\"poetic tale of post Kurukshtrea war Updated\",\n    \"rating\":4.2,\n    \"price\":199\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "d2365cf6-a49b-4f8f-a9be-13a127d216f7",
+            "colId": "91a941a0-12a4-4b31-9385-a156397ff3a4",
+            "containerId": "",
+            "name": "Full Update Book",
+            "url": "http://localhost:8000/books/kurukshetra",
+            "method": "PUT",
+            "sortNum": 12500,
+            "created": "2025-01-20T06:28:53.976Z",
+            "modified": "2025-01-20T06:28:53.976Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n    \"id\":\"kurukshetra\",\n    \"title\":\"Kurukshtrea\",\n    \"author\":\"Ramdhari Singh Dinkar\",\n    \"description\":\"poetic tale of post Kurukshtrea war Updated\",\n    \"rating\":4.2,\n    \"price\":199\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "6d282fb5-378f-4a25-b1cc-720276bf772a",
+            "colId": "91a941a0-12a4-4b31-9385-a156397ff3a4",
+            "containerId": "",
+            "name": "Partial Update Book",
+            "url": "http://localhost:8000/books/kurukshetra",
+            "method": "PATCH",
+            "sortNum": 13750,
+            "created": "2025-01-20T06:28:05.105Z",
+            "modified": "2025-01-20T06:29:49.204Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n    \n    \"price\":9\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "6421d97e-eeda-4812-b8d1-83e73f4124ba",
+            "colId": "91a941a0-12a4-4b31-9385-a156397ff3a4",
+            "containerId": "",
+            "name": "Delete Book",
+            "url": "http://localhost:8000/books/kurukshetra",
+            "method": "DELETE",
+            "sortNum": 15000,
+            "created": "2025-01-20T06:26:57.317Z",
+            "modified": "2025-01-20T06:30:20.079Z",
+            "headers": []
+        }
+    ],
+    "ref": "LU37xIDWxKbKnbzK6_Y_Pagv3_qbVHqvN9th7ANUYRoTP22ruCpHTnd-sZNWJxitTjfidb1C6hLgEFgwJsqSAQ"
+}

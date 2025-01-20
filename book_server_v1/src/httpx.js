@@ -44,7 +44,7 @@ const staticFileServer= ()=> addRequestHandler(async(request,response)=>{
         return true;
     }
     //else     
-
+    console.log(`not a static file: ${request.path}`)
     return false; //not a static file.
 })
 
@@ -61,7 +61,7 @@ const requestDataHandler=()=>addRequestHandler((request,response)=>{
                 //console.log('request.body',request.body);
                 
                 
-                resolve();
+                resolve(false); //make sure next member of pipline is executed.
             });
 
     });

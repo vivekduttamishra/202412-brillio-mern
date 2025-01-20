@@ -1,0 +1,68 @@
+@basePath = http://localhost:8000/api
+
+### Get all Books
+GET {{basePath}}/books
+
+
+### Get Existing Book the-accursed god
+GET {{basePath}}/books/the-accursed-god
+
+
+### Get Invlid Book
+GET {{basePath}}/books/invalid-id
+
+### Add a new book
+POST {{basePath}}/books
+content-type: application/json
+
+{
+    "id":"kurukshetra",
+    "title":"Kurukshtrea",
+    "author":"Ramdhari Singh Dinkar",
+    "description":"poetic tale of post Kurukshtrea war",
+    "rating":4.4,
+    "price":99,
+    "cover":"kurkshetra.png"
+}
+
+
+### Get Newly added book
+GET {{basePath}}/books/kurukshetra
+
+### Update Newly added book (PUT)
+PUT {{basePath}}/books/kurukshetra
+content-type: application/json
+
+{
+    "id":"kurukshetra",
+    "title":"Kurukshtrea",
+    "author":"Ramdhari Singh Dinkar",
+    "description":"poetic tale of post Kurukshtrea war",
+    "rating":4.4,
+    "price":199   
+}
+
+### Partial Update book
+
+PATCH {{basePath}}/books/kurukshetra
+content-type: application/json
+
+{
+    "price":9
+}
+
+
+### Check if book is updated
+
+GET {{basePath}}/books/kurukshetra
+
+
+### Delete Newly added book
+DELETE {{basePath}}/books/kurukshetra
+
+### Check if book is deleted
+
+GET {{basePath}}/books/kurukshetra
+
+### Get all books after deleting
+GET {{basePath}}/books
