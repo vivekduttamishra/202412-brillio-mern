@@ -10,8 +10,8 @@
     "start": "node src/main 80",
     "dev": "nodemon src/main 8000"
   },
-  
   "dependencies": {
+    "dotenv": "^16.4.7",
     "express": "^4.21.2"
   },
   "devDependencies": {

@@ -67,9 +67,15 @@ class BookManager{
     }
 
     async removeBook(id){
-        id=id.toLowerCase();
-        this.books=this.books.filter(b=>b.id.toLowerCase()!==id);
-        await this._save();
+        let book = await this.getById(id);
+        if(book){
+
+            id=id.toLowerCase();
+            this.books=this.books.filter(b=>b.id.toLowerCase()!==id);
+            await this._save();
+            
+        } 
+        return book;
     }
 
     async update(id,updatedInfo){
@@ -101,4 +107,6 @@ class BookManager{
     }
 }
 
-module.exports = new BookManager('./src/books.json');
+//module.exports = new BookManager('./src/books.json');
+
+module.exports = new BookManager(process.env.BOOKS_DB);
