@@ -108,5 +108,4 @@ class BookManager{
 }
 
 //module.exports = new BookManager('./src/books.json');
-
 module.exports = new BookManager(process.env.BOOKS_DB);

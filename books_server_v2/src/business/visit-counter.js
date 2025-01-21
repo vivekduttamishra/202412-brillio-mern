@@ -92,12 +92,19 @@ async function getVisitCounter(){
 
 
 
-async function logVisits(request,response,next){
-    console.log('other middleware worked');
-    //now response is generated. we can start to work on response.
-    let counter= await getVisitCounter();
-    await counter.addRequest({method:request.method, url:request.url,status:response.status});
-    await next(); //let other work
+function logVisits(request,response,next){
+
+    response.on('finish',async()=>{
+
+        console.log('other middleware worked');
+        //now response is generated. we can start to work on response.
+        let counter= await getVisitCounter();
+        await counter.addRequest({method:request.method, url:request.url,status:response.status});
+    
+
+    });
+
+     next(); //let other work
 }
 
 //middleware to show visits
