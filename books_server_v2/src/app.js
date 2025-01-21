@@ -1,19 +1,12 @@
-let express= require('express');
+let express = require('express');
 
-let app=express();
+let app = express();
+let { jsonBody, logRequestInfo } = require('./expressx');
+let {logVisits, showVisits, showVisitsTable}= require('./business/visit-counter');
 
 let bookManager = require('./business/book-manager');
 
-function logRequestInfo(request,response,next){
-    console.log(`${request.method} ${request.path}`);
-    console.log('request.path',request.path);
-    console.log('request.params',request.params);
-    console.log('request.query',request.query);
-    console.log('request.body',request.body);
-    console.log();
-    next();
-    
-}
+
 
 // app.use((request,response,next)=>{
 //     logRequestInfo(request);
@@ -22,47 +15,66 @@ function logRequestInfo(request,response,next){
 
 //app.use(logRequestInfo);
 
+app.use(jsonBody); //add it before all requests.
+app.use(logRequestInfo);
 
-app.get('/', (request,response)=>{
-    
+app.use(logVisits);
+
+app.get('/admin/log/visits',showVisits);
+app.get('/admin/log/visits-html', showVisitsTable);
+
+
+app.get('/', (request, response) => {
     response.send('Hello World!');
 })
 
-app.get('/api/books',async(request,response)=>{
-    logRequestInfo(request);
-    
+app.get('/api/books', async (request, response) => {
+    //logRequestInfo(request);
+
     let books = await bookManager.getAllBooks();
     response.send(books);
 })
 
-app.get('/api/books/:bookId', logRequestInfo, async(request,response)=>{
+app.get('/api/books/:bookId', async (request, response) => {
     //logRequestInfo(request);
     let book = await bookManager.getById(request.params.bookId);
-    if(book)
+    if (book)
         response.send(book);
-    else{
+    else {
         response
             .status(404)
-            .send({id:request.params.bookId, message:"No book found"})
+            .send({ id: request.params.bookId, message: "No book found" })
     }
 });
 
-app.post('/api/books', async(request,response,next)=>{
+app.post('/api/books', async (request, response, next) => {
     //logRequestInfo(request);
-    response.status(201).send({status:'created'})
-    next();
-}, logRequestInfo);
+    try {
+
+        let book = await bookManager.addBook(request.body);
+        response
+            .status(201)
+            .set('location', `/api/books/${book.id}`) //response header
+            .send(book)
+        next();
+    } catch (error) {
+        response
+            .status(400) //invalid details
+            .send({ message: error.message, errors:error.errors })
+    }
+
+});
 
 
-app.put('/api/books/:id', async(request,response)=>{
-    response.status(201).send({status:'updated',path:request.path, id:request.params.id})    
+app.put('/api/books/:id', async (request, response) => {
+    response.status(201).send({ status: 'updated', path: request.path, id: request.params.id })
 })
-app.patch('/api/books/:id', async(request,response)=>{
-    response.status(201).send({status:'patched',path:request.path, id:request.params.id})    
+app.patch('/api/books/:id', async (request, response) => {
+    response.status(201).send({ status: 'patched', path: request.path, id: request.params.id })
 })
-app.delete('/api/books/:id', async(request,response)=>{
-    response.status(201).send({status:'deleted',path:request.path, id:request.params.id})    
+app.delete('/api/books/:id', async (request, response) => {
+    response.status(201).send({ status: 'deleted', path: request.path, id: request.params.id })
 })
 
 
-module.exports=app;
+module.exports = app;

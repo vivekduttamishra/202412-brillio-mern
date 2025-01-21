@@ -116,5 +116,32 @@
       "seriesIndex": "5",
       "cover": "https://m.media-amazon.com/images/I/51-SI2+aQ2L._SY346_.jpg",
       "reviews": []
+   },
+   {
+      "id": "kurukshetra",
+      "title": "Kurukshtrea",
+      "author": "Ramdhari Singh Dinkar",
+      "description": "poetic tale of post Kurukshtrea war",
+      "rating": 4.4,
+      "price": 99,
+      "cover": "kurkshetra.png"
+   },
+   {
+      "title": "Manas",
+      "author": "Vivek Dutta Mishra",
+      "description": "poetic analysis of Mahabharata",
+      "rating": 4.4,
+      "price": 99,
+      "cover": "kurkshetra.png",
+      "id": "manas"
+   },
+   {
+      "id": "kurukshetra",
+      "title": "Kurukshtrea",
+      "author": "Ramdhari Singh Dinkar",
+      "description": "poetic tale of post Kurukshtrea war",
+      "rating": 4.4,
+      "price": 99,
+      "cover": "kurkshetra.png"
    }
 ]

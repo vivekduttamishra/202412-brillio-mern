@@ -1,4 +1,4 @@
-const { delay } = require("../utils");
+const { delay,ValidationError } = require("../utils");
 const fs = require('fs').promises;
  
 class BookManager{
@@ -31,9 +31,35 @@ class BookManager{
 
     }
 
+    _validate(book){
+        let errors={};
+
+        if(!book.title)
+            errors.title="Required";
+        if(!book.author)
+            errors.author="Required";
+        if(!book.price)
+            errors.price="Required";
+        if(isNaN(book.price) || book.price<0)
+            errors.price="Invalid price";
+
+        if(Object.keys(errors).length){
+            throw new ValidationError(errors);
+            //return new ValidationError(errors);
+        }
+    }
+
     async addBook(book){
+
+        this._validate(book);
+
+        if(!book.id){
+            book.id=book.title.toLowerCase().split(' ').join('-')
+        }
+
         this.books.push(book); 
         await this._save();
+        return book;
     }
 
     async getById(id){
@@ -47,6 +73,8 @@ class BookManager{
     }
 
     async update(id,updatedInfo){
+        this._validate(updatedInfo)
+
         id=id.toLowerCase();
         this.books= this.books.map(b=>b.id.toLowerCase()===id?updatedInfo:b);  
         await this._save();  
@@ -58,6 +86,7 @@ class BookManager{
     async partialUpdate(id, partialInfo){
         let book = await this.getById(id);
         if(book){
+            this._validate({...book, ...partialInfo});
             for(let key in partialInfo){
                 book[key]=partialInfo[key];
             }   

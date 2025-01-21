@@ -1,0 +1,10 @@
+{
+   "get /api/books": 8,
+   "post /api/books": 2,
+   "get /api/books/the-accursed-god": 5,
+   "get /api/books/invalid-id": 3,
+   "get /admin/log/visits": 3,
+   "get /admin/log/visits-html": 4,
+   "get /admin/logs/visit-html": 1,
+   "get /favicon.ico": 1
+}
