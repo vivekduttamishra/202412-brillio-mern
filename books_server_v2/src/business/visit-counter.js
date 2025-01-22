@@ -2,9 +2,14 @@ const fs = require('fs').promises;
 
 /* Log format
 {
-   "success":{
+   "200":{
       "GET /books":5,
       "GET /books/the-accursed-god":3,
+   },
+
+   "201":{
+   "POST /books":1,
+   "POST /books/the-unseen-world":2
    },
 
    "404":{
@@ -39,35 +44,31 @@ class VisitCounter{
     }
 
     //send a request as {method:get",url:"/books", status:200}
-    async addRequest( request) {
-        let key= `${request.method} ${request.url}`.toLowerCase();
-        let root = request.status===404 ? "404": request.status>=200 && request.status<300?"success":null;
-        if(!root)
-            return;
+    async addRequest( {method,url,status=200}) {
+        let rootKey = status;
+        let requestKey= `${method} ${url}`.toLowerCase();
 
-        if(!this._log[root])
-            this._log[root]={};
+        //if no request with current rootKey is saved
+        //create the rootKey
+        if(!this._log[rootKey])
+            this._log[rootKey]={};
 
-        let rootObject = this._log[root];
-
-        if(rootObject[key]){
-            rootObject[key]++;
+        let rootObject = this._log[rootKey];
+        if(rootObject[requestKey]){
+            rootObject[requestKey]++;
         }else{
-            rootObject[key]=1;
+            rootObject[requestKey]=1;
         }
-
         
 
         await this._save();
     }
 
     get log(){
-        return this._log['success'];
+        return this._log;
     }
 
-    get errors(){
-        return this._log['404'];
-    }
+   
 
 }
 
@@ -96,53 +97,60 @@ function logVisits(request,response,next){
 
     response.on('finish',async()=>{
 
+        console.log('response.statusCode',response.statusCode);
+        console.log('request',request);
+        
+        
         console.log('other middleware worked');
         //now response is generated. we can start to work on response.
         let counter= await getVisitCounter();
-        await counter.addRequest({method:request.method, url:request.url,status:response.status});
+        await counter.addRequest({method:request.method, url:request.originalUrl,status:response.statusCode});
     
 
     });
-
+ 
      next(); //let other work
 }
 
-//middleware to show visits
+//middleware to show visits for a given key.
 async function showVisits(request,response){
-
+    console.log('request.params',request.params);
+    
     let counter= await getVisitCounter();
-    response.send(counter.log);
+    console.log('counter.log',counter.log);
+        
+    response.send(counter.log[request.params.status]||{});
 
 }
 
-async function show404(request,response){
-    let counter= await getVisitCounter();
-    response.send(counter.errors);
-}
 async function showVisitsTable(request,response){
 
+    let {status}=request.params;
     let counter= await getVisitCounter();
+    counter = counter.log[status]||{};
+
     let table=`<table style="width:100%;border:1 px solid gra;">
                 <thead>
                     <tr>
                         <th>Method/URL</th>
                         <th>Visits</th>
+                       
                     </tr>
                 </thead>
                 <tbody>`;
 
     for(let key in counter.log){
-        table+=`<tr><td>${key}</td><td>${counter.log[key]}</td>`
+        table+=`<tr><td>${key}</td><td>${counter[key]}</td></tr>`;
     }
 
     table+=`</tbody></table>`;
 
     response.send(`<html>
                     <head>
-                        <title>Visit Log</title>
+                        <title>Visit Log for Status {status}</title>
                     </head>
                     <body>
-                        <h1>Visit Log</h1>
+                        <h1>Visit Log for status {status}</h1>
                         ${table}
                     </body>
                     </html>`
@@ -157,6 +165,6 @@ module.exports={
     logVisits,
     showVisits,
     showVisitsTable,
-    show404
+    
     
 }

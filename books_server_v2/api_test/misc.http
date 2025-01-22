@@ -1,5 +1,10 @@
 @basePath = http://localhost:8000
 
+### Invalid Route
+GET {{basePath}}/movies
+
+
+
 ### Check Error Routes
 {{basePath}}/error/evil-is-evil
 

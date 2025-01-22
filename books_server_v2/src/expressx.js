@@ -51,8 +51,14 @@ function logRequestInfo(request,response,next){
 }
 
 
+const  errorHandler=(error,request,response,next)=>{
+    response.status(500).json({ message:error.message});
+}
+
+
 
 module.exports={
     jsonBody: jsonBody,
-    logRequestInfo
+    logRequestInfo,
+    errorHandler
 };

@@ -1,15 +1,6 @@
 @basePath = http://localhost:8000
 @apiPath = {{basePath}}/api
 
-### Get Visit Log
-GET {{basePath}}/admin/log/visits
-
-### Get Visit Log As HTML
-GET {{basePath}}/admin/log/visits-html
-
-### Invalid Route
-GET {{apiPath}}/movies
-
 
 ### Get all Books
 GET {{apiPath}}/books

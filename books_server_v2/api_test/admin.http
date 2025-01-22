@@ -1,0 +1,13 @@
+@apiUrl = http://localhost:8000/api/admin
+
+### Get All The Successful Requests
+GET {{apiUrl}}/logs/200
+
+
+### Get All Not Found Requests
+GET {{apiUrl}}/logs/404
+
+
+
+### Get All Create Requests
+GET {{apiUrl}}/logs/201
