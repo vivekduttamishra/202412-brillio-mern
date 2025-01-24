@@ -3,14 +3,14 @@ const mongodb=require('mongodb');
 
 console.log('process.env.MONGODB_URL',process.env.MONGODB_URL);
 
-
-const client = new mongodb.MongoClient(process.env.MONGODB_URL);
+var client= new mongodb.MongoClient(process.env.MONGODB_URL);
 
 
 async function getAllBooks(){
     try{
+        var client = new mongodb.MongoClient(process.env.MONGODB_URL);
         console.log('getting all books...');
-        const client = new mongodb.MongoClient(process.env.MONGODB_URL);
+        
         await client.connect();
         
         const db = client.db('brillio_books'); //use brillio_books
@@ -36,21 +36,24 @@ async function getAllBooks(){
 
 async function getAuthorById(id){
     try{
-        var connection=await client.connect();
-        const db = connection.db(); //default database (as per connection url)
-        const authorsCollection = db.collection('authors');
-        var authors=authorsCollection.find({id:id})
-        authors=await authors.toArray();
+        var client = new mongodb.MongoClient(process.env.MONGODB_URL);
+        var connection = await client.connect();        
+        var db= connection.db(); //default database (as per connection url)
+        const authorsCollection = await db.collection('authors');
+       
+        var author = await authorsCollection.findOne({id});
 
-        if(authors.length==0)
-            console.log(id,'not found');
+        if(author)
+            console.log(id,author.name);
         else
-            console.log(id,authors[0].name);
+            console.log(id,'not found');
+            
         
         
         
     }catch(err){
-       connection.close();
+       console.log('err.message',err.message);
+       
     }finally{
         connection.close();
     }
