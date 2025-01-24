@@ -6,8 +6,10 @@ db.books.aggregate([
     {
         $group:{
             _id: "$authorId",
-            title: "$title"
-           
+            groupKey:{ $first:"$authorId"},
+            booksWritten: {$sum:1},
+            averagePrice: {$avg: "$price"},
+            author:{ $first:"$author"}
         }
     }
 ])

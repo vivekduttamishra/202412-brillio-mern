@@ -30,7 +30,7 @@ async function findOne(collectionName, matcher){
     });
 }
 
-async function aggregate(collectionName, ... operators){
+async function aggregate(collectionName, operators){
     return await executeOnCollection(collectionName,async (collection,db)=>{
         return await ((collection.aggregate(operators))).toArray();
     });

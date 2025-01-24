@@ -40,7 +40,25 @@ async function updateAuthorId(bookId,authorId){
     });
 }
 
-updateAuthorId('kane-and-abel','jeffrey-archer')
+async function showAuthorSummary(){
+    let result= await mongox.aggregate("books",[
+        {
+            $group:{
+                _id: "$authorId",
+                groupKey:{ $first:"$authorId"},
+                booksWritten: {$sum:1},
+                averagePrice: {$avg: "$price"},
+                author:{ $first:"$author"}
+            }
+        }
+    ]);
+
+    console.log(result)
+}
+
+showAuthorSummary();
+
+//updateAuthorId('kane-and-abel','jeffrey-archer')
 
 
 //printAllAuthors();
