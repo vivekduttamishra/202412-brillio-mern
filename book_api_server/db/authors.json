@@ -1,0 +1,12 @@
+[
+    {
+        "id":"gandhi",
+        "name":"Mahatma Gandhi",
+        "biography":"The Father of the nation, freedom fighter, social reformer and acknolwedged greatest man of the century"
+    },
+    {
+        "id":"nehru",
+        "name":"Jawahar Lal Nehru",
+        "biography":"The first Prime Minister of India and the best seller author of The Discovery of India, and Glimpses of World Hisotry"
+    }
+]
