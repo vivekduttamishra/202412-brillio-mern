@@ -1,0 +1,32 @@
+@basePath = http://localhost:8000
+
+### Invalid Route
+GET {{basePath}}/movies
+
+
+
+### Check Error Routes
+{{basePath}}/error/evil-is-evil
+
+### check for single author
+
+{{basePath}}/authors/vivek-dutta-mishra
+
+
+### get authors
+{{basePath}}/authors/vivek/dinkar/dumas
+
+
+### get movies
+{{basePath}}/movies
+
+### get reviews
+{{basePath}}/reviews/1
+
+
+### get reviews
+{{basePath}}/reviews/2
+
+
+### get reviews
+{{basePath}}/reviews/1/2
