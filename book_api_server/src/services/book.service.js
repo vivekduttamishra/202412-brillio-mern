@@ -2,8 +2,9 @@ const {ValidationError} = require("../utils/errors");
 
  
 class BookService{
-    constructor(bookRepository){
-        this.bookRepository = bookRepository;        
+    constructor(bookRepository,authorService){
+        this.bookRepository = bookRepository;    
+        this.authorService = authorService;    
     }
     
     async getAllBooks(){
@@ -11,7 +12,7 @@ class BookService{
     }
   
 
-    _validate(book){
+    async _validate(book){
         let errors={};
 
         if(!book.title)
@@ -23,6 +24,13 @@ class BookService{
         if(isNaN(book.price) || book.price<0)
             errors.price="Invalid price";
 
+        //make sure that authorId is a valid author.
+        let author = await this.authorService.getAuthorById(book.authorId);
+        if(!author){
+            error.authorId='Invalid Author Id: '+authorId;
+        }
+
+
         if(Object.keys(errors).length){
             throw new ValidationError(errors);
             //return new ValidationError(errors);
@@ -31,9 +39,9 @@ class BookService{
 
     async addBook(book){
 
-        this._validate(book);
+        await this._validate(book);
 
-        let result = await this.bookRepository.addBook(book);
+        let result = await this.bookRepository.create(book);
         return result;
     }
 
@@ -63,5 +71,8 @@ class BookService{
         return await this.bookRepository.search(matcher);
     }
 }
+
+BookService._dependencies =['bookRepository','authorService']
+
 
 module.exports = BookService;

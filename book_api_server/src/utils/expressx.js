@@ -1,4 +1,85 @@
 
+const successMap={
+    GET:200,
+    POST:201,
+    PUT:202,
+    PATCH:202,
+    DELETE:204
+}
+
+const errorMap={
+    'NotFoundError':404,
+    'ValidationError':400,
+    'DuplicateError':400,
+    'AuthenticationError':401,
+    'AuthorizationError': 403
+    //we may have more errors
+}
+
+const addCustomError=(error, statusCode)=>errorMap[error]=statusCode;
+
+class Response{
+    constructor(body, statusCode, headers={}){
+        this.statusCode=statusCode;
+        this.body=body;
+        this.headers=headers;
+    }
+    send(response){
+        response.status(this.statusCode)
+        for(let key in this.headers)
+            response.set(key, headers[key]);
+        response.send(this.data)
+    }
+}
+
+class ResponseError extends Error{
+    constructor(message, status, error, header){
+        super(message);
+        this.response = new Response(error, status,header);
+    }
+
+    send(response){
+        this.response.send(response);
+    }
+}
+
+
+ function routeHandler(controllerFunction){
+
+    //this function will handle the response.
+    return async (request,response,next)=>{
+        try{
+            let controllerParam ={ request, 
+                                   response, 
+                                   next, 
+                                   params:request.params, 
+                                   body:request.body,
+                                   query:request.query,
+                                   ...request.params
+                                }
+            let result = await controllerFunction(controllerParam);
+            if(!result && request.method === 'GET')
+                throw new NotFoundError('Not Found',{message:'Not Found', url:request.path, params:request.params, query:request.query})
+            if(result instanceof Response){
+                return result.send(response);
+            }
+            let status = successMap[request.method];
+            return response.status(status).send(result);
+            
+        }catch(error){
+            let status = errorMap[error.constructor.name] || 500;
+            response.status(status);
+            let body = error.errors || {message:error.message,status,errors:error}
+            response.send(body);
+            
+        }
+
+    }
+
+}
+
+
+
 
 function jsonBody(request, response, next) {
 
@@ -60,5 +141,8 @@ const  errorHandler=(error,request,response,next)=>{
 module.exports={
     jsonBody: jsonBody,
     logRequestInfo,
-    errorHandler
+    errorHandler,
+    addCustomError,
+    routeHandler,
+    Response,
 };

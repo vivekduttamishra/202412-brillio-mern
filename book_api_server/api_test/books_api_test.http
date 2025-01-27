@@ -21,6 +21,7 @@ content-type: application/json
 {
     "id":"kurukshetra",
     "title":"Kurukshtrea",
+    "authorId":"ramdhari-singh-dinkar",
     "author":"Ramdhari Singh Dinkar",
     "description":"poetic tale of post Kurukshtrea war",
     "rating":4.4,

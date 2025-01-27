@@ -7,4 +7,6 @@ class JsonAuthorRepository extends JsonRepository {
     }
 }
 
+//no special dependcies.
+
 module.exports= JsonAuthorRepository;
