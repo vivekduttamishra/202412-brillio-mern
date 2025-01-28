@@ -3,10 +3,16 @@ const {NotFoundError}= require('../../utils/errors');
 class MongooseRepository{
     constructor(model){
         this.model=model;
+        console.log('this.model',this.model);
+        
     }
 
-    async getAll(){
-        return await this.model.find({});
+    async getAll(matcher={}){
+        return await this.model.find(matcher);
+    }
+
+    async getOne(matcher){
+        return await this.model.findOne(matcher);
     }
 
     async create(object){

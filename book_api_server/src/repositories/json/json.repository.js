@@ -3,10 +3,13 @@ const fs= require('fs').promises;
 const path = require('path');
 const {NotFoundError,ValidationError}=require('../../utils/errors');
 
+//console.log('process.cwd()',process.cwd());
+//console.log('require.main.filename',require.main.filename);
+
 
 class JsonRepository{
     constructor(repositoryPath){
-        console.log('process.env.ROOT_PATH',process.env.ROOT_PATH);
+        //console.log('process.env.ROOT_PATH',process.env.ROOT_PATH);
         
         this.path=path.join(process.env.ROOT_PATH , repositoryPath);
         this.data=[]; 

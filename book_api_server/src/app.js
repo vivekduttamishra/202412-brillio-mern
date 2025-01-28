@@ -1,7 +1,8 @@
 const express = require('express');
-const bookRouter = require('./routes/book-routes');
-const adminRouter= require('./routes/admin-routes');
-const authorRouter = require('./routes/author-routes');
+const bookRouter = require('./routes/book.routes');
+const adminRouter= require('./routes/admin.routes');
+const authorRouter = require('./routes/author.routes');
+const userRouter = require('./routes/user.routes');
 const {errorHandler}= require('./utils/expressx')
 const {logVisits} = require('./services/visit-counter.service');
 const path= require('path');
@@ -15,11 +16,12 @@ app.use(express.static(publicFolder))//build in static route handler
 
 app.use(express.json()); //built-in json body parser
 
-app.use(logVisits);
+//app.use(logVisits);
 
 app.use('/api/admin', adminRouter);
 app.use("/api/books", bookRouter);
 app.use("/api/authors", authorRouter);
+app.use('/api/users', userRouter);
 
 
 app.get('/error/:message', (request,response)=>{

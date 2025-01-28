@@ -97,11 +97,11 @@ function logVisits(request,response,next){
 
     response.on('finish',async()=>{
 
-        console.log('response.statusCode',response.statusCode);
-        console.log('request',request);
+        //console.log('response.statusCode',response.statusCode);
+        //console.log('request',request);
         
         
-        console.log('other middleware worked');
+      //  console.log('other middleware worked');
         //now response is generated. we can start to work on response.
         let counter= await getVisitCounter();
         await counter.addRequest({method:request.method, url:request.originalUrl,status:response.statusCode});

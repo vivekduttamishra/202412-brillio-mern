@@ -4,8 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="bootstrap.css">
 </head>
 <body>
-     <h1>Welcome to Book's API Server</h1>   
+     <h1>Our Book List</h1>   
+
+     <table class="table table-hover table-striped">
+        <thead>
+            <tr>
+                <th>cover</th>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody id="books">
+            <tr>
+                <td><img src="cover1.jpg" alt="cover"></td>
+                <td>Book Title 1</td>
+                <td>Author 1</td>
+                <td>Rs 10.99</td>
+            </tr>
+            <tr>
+                <td><img src="cover2.jpg" alt="cover"></td>
+                <td>Book Title 2</td>
+                <td>Author 2</td>
+                <td>Rs 15.99</td>
+            </tr>
+            <!-- Add more books here -->
+        </tbody>
+     </table>
+     <script src="app.js"></script>
 </body>
 </html>

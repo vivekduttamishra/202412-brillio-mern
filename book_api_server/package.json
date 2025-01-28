@@ -11,6 +11,8 @@
     "dev": "nodemon src/main 8000"
   },
   "dependencies": {
+    "bcrypt": "^5.1.1",
+    "bootstrap": "^5.3.3",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "mongodb": "^6.12.0",

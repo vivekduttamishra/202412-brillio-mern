@@ -1,36 +1,21 @@
 {
    "200": {
-      "get /api/books": 8,
-      "get /api/books/the-accursed-god": 4,
-      "get /api/books/kurukshetra": 1,
-      "put /api/books/kurukshetra": 1,
-      "patch /api/books/kurukshetra": 2,
-      "get /api/books/manas": 1,
-      "get /api/admin/logs/200": 2,
-      "get /api/admin/logs/404": 1,
-      "get /api/admin/logs/201": 1,
-      "get /api/authors": 3
+      "get /api/books": 1,
+      "get /api/users": 3
    },
-   "201": {
-      "post /api/books": 3
+   "304": {
+      "get /api/books": 1
    },
-   "204": {
-      "delete /api/books/kurukshetra": 1,
-      "delete /api/books/manas": 1
-   },
-   "400": {
-      "post /api/books": 1
+   "401": {
+      "post /api/users/signin": 13
    },
    "404": {
-      "get /api/books/invalid-id": 3,
-      "get /api/books/kurukshetra": 2,
-      "get /api/books/manas": 2,
-      "get /": 1,
-      "get /index.html": 2,
-      "get /api/authors/invalid-author": 2,
-      "post /api/books": 1
+      "get /cover2.jpg": 1,
+      "get /cover1.jpg": 1,
+      "get /bootstrap.css.map": 1,
+      "get /kurkshetra.png": 1
    },
    "500": {
-      "post /api/books": 3
+      "get /api/users": 7
    }
 }

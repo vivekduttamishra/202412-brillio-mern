@@ -1,20 +1,31 @@
-class ValidationError extends Error{
-    constructor(errors){
-        super('Validation Error');
-        this.errors=errors;
+class BusinessError extends Error{
+    constructor(message, errors){
+        super(message|| this.constructor.name);
+        this.errors=errors || {message};
     }
+}
+
+
+class ValidationError extends BusinessError{
+   
 }
 
 class NotFoundError extends Error{
-    constructor(id,message='Not Found'){
-        super(message);
-        this.errors={
-            message,id
-        }
-    }
+   
+}
+
+class AuthenticationError extends Error{
+   
+}
+
+class AuthorizationError extends Error{
+   
 }
 
 module.exports={
+    BusinessError,
     ValidationError,
-    NotFoundError
+    NotFoundError,
+    AuthenticationError,
+    AuthorizationError
 }

@@ -1,0 +1,70 @@
+@api_url = http://localhost:8000/api/users
+
+
+### get all users
+GET {{api_url}}
+
+
+### login a valid user
+POST {{api_url}}/signin
+Content-Type: application/json
+
+{
+    "email": "vivek@gmail.com",
+    "password": "p@ss#1234"
+}
+
+### login an admin user
+
+POST {{api_url}}/signin
+Content-Type: application/json
+
+{
+   "email": "rajiv@gmail.com",
+    "password": "p@ss#1234"
+}
+
+
+### login invalid email
+
+POST {{api_url}}/signin
+Content-Type: application/json
+
+{
+   "email": "rajiv@invaliddomain.com",
+    "password": "p@ss#1234"
+}
+
+### login invalid password
+
+POST {{api_url}}/signin
+Content-Type: application/json
+
+{
+   "email": "rajiv@gmail.com",
+    "password": "wrong_password"
+}
+
+
+### create a valid new user
+
+POST {{api_url}}/signup
+Content-Type: application/json
+
+{
+    "name": "New User 2",
+    "email": "newuser2@gmail.com",
+    "password": "P@ss#1234",
+    "roles":["admin"]
+}
+
+### Login the new User
+POST {{api_url}}/signin
+Content-Type: application/json
+
+{
+    
+    "email": "newuser@gmail.com",
+    "password": "P@ss#1234"
+    
+}
