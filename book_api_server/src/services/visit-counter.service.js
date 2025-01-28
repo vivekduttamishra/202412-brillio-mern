@@ -114,10 +114,10 @@ function logVisits(request,response,next){
 
 //middleware to show visits for a given key.
 async function showVisits(request,response){
-    console.log('request.params',request.params);
+    //console.log('request.params',request.params);
     
     let counter= await getVisitCounter();
-    console.log('counter.log',counter.log);
+    //console.log('counter.log',counter.log);
         
     response.send(counter.log[request.params.status]||{});
 

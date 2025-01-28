@@ -37,7 +37,7 @@ class Injector{
 
     getService(serviceKey) {
         
-        console.log('service requested', serviceKey);
+        //console.log('service requested', serviceKey);
 
         let serviceInfo = this.container[serviceKey];
         if(!serviceInfo)
@@ -51,7 +51,7 @@ class Injector{
             //console.log(`creating service ${serviceKey} : ${serviceInfo.serviceClass.name}`)
             let instance = this._createInstance(serviceInfo); //create object
             serviceInfo.serviceInstance = instance; //safe for next request
-            console.log();
+            //console.log();
             return instance; //return the object.
         }
 

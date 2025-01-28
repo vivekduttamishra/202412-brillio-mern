@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt');
 class UserService{
     constructor(userRepository){
         this.userRepository = userRepository;
-        console.log('this.userRepository',this.userRepository);
+        //console.log('this.userRepository',this.userRepository);
     }
 
     async getAllUsers(){
@@ -21,12 +21,7 @@ class UserService{
     }
 
     async login({email, password}){
-        console.log('login')
-        console.log('email',email);
-        console.log('password',password);
-        
-        let user = await this.userRepository.getOne({email});
-       console.log('db user in logic',user);
+    console.log('login password',password);        let user = await this.userRepository.getOne({email});
        
        if(!user)
             throw new AuthenticationError('Invalid User Credentials',{email});

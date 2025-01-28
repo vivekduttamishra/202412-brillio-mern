@@ -84,14 +84,14 @@ class ResponseError extends Error{
 function jsonBody(request, response, next) {
 
     if(['get','delete'].includes(request.method.toLowerCase())) {
-        console.log('Not a body request');
+        //console.log('Not a body request');
         return next();
     }
     
     
 
     if(!request.get('Content-Type').includes('/json')){
-        console.log('Not a JSON request');
+        //console.log('Not a JSON request');
         return next(); //skip 
     }
 

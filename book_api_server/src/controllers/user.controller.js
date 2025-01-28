@@ -2,7 +2,7 @@ const injector = require('../utils/injector')
 
 const userService = injector.getService('userService');
 
-console.log('userService',userService.constructor.name);
+//console.log('userService',userService.constructor.name);
 
 
 const getAllUsers = async  ()=> await userService.getAllUsers();

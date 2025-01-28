@@ -2,7 +2,7 @@
 
 const app = (function(){
 
-    const url = 'http://localhost:8000/api/books';
+    const url = 'https://localhost:8000/api/books';
 
     async function getAllBooks(){
         let response = await fetch(url);

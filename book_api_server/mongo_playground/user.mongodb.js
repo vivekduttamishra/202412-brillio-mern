@@ -7,7 +7,7 @@ async function hashAllPassword(plainPassword){
     for(let user of users){
         let hashedPassword = await bcrypt.hash(plainPassword,10);
         db.users.updateOne({_id:user._id},{$set:{password:hashedPassword}})
-        console.log('User password hashed',user.name);
+        //console.log('User password hashed',user.name);
     }
 }
 

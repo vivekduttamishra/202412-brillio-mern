@@ -1,4 +1,4 @@
-@api_url = http://localhost:8000/api/users
+@api_url = https://localhost:8000/api/users
 
 
 ### get all users
@@ -11,7 +11,7 @@ Content-Type: application/json
 
 {
     "email": "vivek@gmail.com",
-    "password": "p@ss#1234"
+    "password": "p@ss$1234"
 }
 
 ### login an admin user
@@ -21,7 +21,7 @@ Content-Type: application/json
 
 {
    "email": "rajiv@gmail.com",
-    "password": "p@ss#1234"
+    "password": "p@ss$1234"
 }
 
 

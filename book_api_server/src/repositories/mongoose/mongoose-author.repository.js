@@ -4,7 +4,7 @@ const MongooseRepository = require('./mongoose.repository');
 class MongooseAuthorRepository extends MongooseRepository {
 
         constructor(model){
-            console.log('Author model',model)
+           // console.log('Author model',model)
             super(model);
         }
 }

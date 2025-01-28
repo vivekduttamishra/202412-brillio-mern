@@ -3,7 +3,7 @@ const {NotFoundError}= require('../../utils/errors');
 class MongooseRepository{
     constructor(model){
         this.model=model;
-        console.log('this.model',this.model);
+        //console.log('this.model',this.model);
         
     }
 
